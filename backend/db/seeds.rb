@@ -15,6 +15,6 @@ s10 = Song.create!({ title: "I've Been Waiting", artist: "Uevo", genre: "lofi", 
 s11 = Song.create!({ title: "oceans", artist: "SpoonBeats", genre: "lofi", playlist_id: 3 })
 s12 = Song.create!({ title: "Benadryl", artist: "Sofi Tukker", genre: "alt", playlist_id: 3 })
 
-usr1 = User.create!({ first_name: "Annie", email: "AnnieTaylor@gmail.com", password_digest: "123" })
-usr2 = User.create!({ first_name: "Mona", email: "MonaKitty@gmail.com", password_digest: "456" })
-usr3 = User.create!({ first_name: "Ophelia", email: "o-o-phelia@gmail.com", password_digest: "789" })
+usr1 = User.create!({ email: "AnnieTaylor@gmail.com", password_digest: "123" })
+usr2 = User.create!({ email: "MonaKitty@gmail.com", password_digest: "456" })
+usr3 = User.create!({ email: "o-o-phelia@gmail.com", password_digest: "789" })
