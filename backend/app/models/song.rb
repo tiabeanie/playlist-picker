@@ -1,3 +1,4 @@
 class Song < ApplicationRecord
-    belongs_to :playlist
+    has_many :playlists
+    has_many :users, through: :playlists
 end
