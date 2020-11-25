@@ -1,39 +1,33 @@
 class PlaylistsController < ApplicationController
-    before_action :set_playlist, only: [:show, :update, :destroy]
-  
-    def index
-      @playlists = Playlist.where(:owner => params[:user_id])
-      json_response(object: @playlists)
+    def new
+        playlist = Playlist.new
     end
-  
+
     def create
-      @playlist = Playlist.create!(title: params[:title], owner: params[:owner])
-      if @playlist
-        json_response(object: @playlist, message: "Playlist saved!", status: :created)
-      end
+        playlist = Playlist.new(playlist_params)
+        if playlist.save
+            render json: playlist, except: [:created_at, :updated_at]
+        else
+            render json: {message: "Playlist Failed"}
+        end
     end
-  
-    def show
-      json_response(object: @playlist)
+
+    def index
+        user_id = params[:user_id]
+        user = User.find(user_id)
+        playlists = user.playlists
+        render json: playlists, include: [:song]
     end
-  
-    def update
-      @playlist.update(playlist_params)
-      head :no_content
-    end
-  
+
     def destroy
-      @playlist.destroy
-      head :no_content
+        playlist_id = params[:id]
+        playlist = Playlist.find(playlist_id)
+        playlist.destroy
     end
-  
-    private
-  
-    def set_playlist
-      @playlist = Playlist.find(params[:id])
-    end
-  
+
+
+private
     def playlist_params
-      params.require(:playlist).permit(:title, :owner)
+      params.require(:playlist).permit(:user_id, :song_id)
     end
 end
