@@ -20,7 +20,7 @@ class Song {
 
     render() {
         return `<div class="card">
-                  <h2>${this.title} ($${this.artist})</h2>
+                  <h2>${this.title} (${this.artist})</h2>
                   <h4 class="song-genre">${this.genre}</h4>
                   <button data-song-id=${this.id} class="like-btn">♡</button>
                 </div>`
