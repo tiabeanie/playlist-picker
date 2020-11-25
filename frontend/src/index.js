@@ -30,7 +30,7 @@ class Song {
 
 function putSongsOnDom(songArray){
     songCollection.innerHTML = `<h2 class="subheader">All Songs</h2>
-                                <h4 class="favorites-link">View My Playlist ♡</h4>`
+                                <h4 class="playlists-link">View My Playlist ♡</h4>`
     songArray.forEach(song => {
         songCollection.innerHTML += new Song(song).render()
     })
@@ -43,7 +43,7 @@ function putPlaylistsOnDom(playlistArray){
         playlistCollection.innerHTML += `<div class="card">
           <h2>${playlist.song.title} ($${playlist.song.artist})</h2>
           <h4 class="song-genre">${playlist.song.gere}</h4>
-          <button data-song-id=${favorite.song.id} class="like-btn" style="color:red;">♡</button>
+          <button data-song-id=${playlist.song.id} class="like-btn" style="color:red;">♡</button>
         </div>`
     })
 }
@@ -107,7 +107,7 @@ function loggedInUser(object){
     signupForm.style.display = 'none'
     welcome.innerHTML = `<h3>Hello, <i>${currentUser.name}</i> !</h3>`
     logout.innerText = "Logout"
-    fetchGifts()
+    fetchSongs()
 }
 
 songCollection.addEventListener('click', function(e){
