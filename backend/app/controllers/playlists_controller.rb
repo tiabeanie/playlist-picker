@@ -14,7 +14,7 @@ class PlaylistsController < ApplicationController
 
     def index
         user_id = params[:user_id]
-        user = User.find(user_id)
+        user = User.find_by(id: params[:id])
         playlists = user.playlists
         render json: playlists, include: [:song]
     end

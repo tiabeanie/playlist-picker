@@ -1,14 +1,17 @@
 const BASE_URL = "http://localhost:3000"
 const SONGS_URL = `${BASE_URL}/songs`
-const PLAYLISTS_URL = `${BASE_URL}/playlists`
 const USERS_URL = `${BASE_URL}/users`
+const PLAYLISTS_URL = `${BASE_URL}/playlists`
 
-const playlistCollection = document.querySelector('#playlist-collection')
 const songCollection = document.querySelector('#song-collection')
+const playlistCollection = document.querySelector('#playlist-collection')
+const likeButton = document.querySelector('.like-btn')
 const signupForm = document.querySelector('#signup-form')
 const signupInputs = document.querySelectorAll(".signup-input")
 const logout = document.querySelector('.logout')
-
+const header = document.querySelector('.header-banner')
+const logout = document.querySelector('.logout')
+let currentUser
 
 class Song {
     constructor(songAttributes) {
@@ -38,8 +41,7 @@ function putSongsOnDom(songArray){
 
 function putPlaylistsOnDom(playlistArray){
     playlistCollection.innerHTML = `<h2 class="subheader">My Playlist</h2>
-                               <h4 class="back-link">←Back to Songs</h4>`
-    debugger
+                                    <h4 class="back-link">←Back to Songs</h4>`
     playlistArray.forEach(playlist => {
         playlistCollection.innerHTML += `<div class="card">
           <h2>${playlist.song.title} (${playlist.song.artist})</h2>
