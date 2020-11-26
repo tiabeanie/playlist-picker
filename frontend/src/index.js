@@ -39,9 +39,10 @@ function putSongsOnDom(songArray){
 function putPlaylistsOnDom(playlistArray){
     playlistCollection.innerHTML = `<h2 class="subheader">My Playlist</h2>
                                <h4 class="back-link">←Back to Songs</h4>`
+    debugger
     playlistArray.forEach(playlist => {
         playlistCollection.innerHTML += `<div class="card">
-          <h2>${playlist.song.title} ($${playlist.song.artist})</h2>
+          <h2>${playlist.song.title} (${playlist.song.artist})</h2>
           <h4 class="song-genre">${playlist.song.gere}</h4>
           <button data-song-id=${playlist.song.id} class="like-btn" style="color:red;">♡</button>
         </div>`
@@ -105,7 +106,7 @@ playlistCollection.addEventListener('click', function(e) {
 function loggedInUser(object){
     currentUser = object
     signupForm.style.display = 'none'
-    welcome.innerHTML = `<h3>Hello, <i>${currentUser.name}</i> !</h3>`
+    welcome.innerHTML = `<h3>Hello, <i>${currentUser.email}</i> !</h3>`
     logout.innerText = "Logout"
     fetchSongs()
 }
